@@ -19,13 +19,20 @@ int main(void) {
     DDRC = 0xFF; PORTC = 0x00;
 
     unsigned char tmpC = 0x00;
-
+    unsigned char tmpA = 0x00;
+    unsigned char tmpB = 0x00;
+    int i = 0;
+   // unsigned char tmpval = 0x00;
+    
+    
     while (1) {	 
+	tmpC = 0x00;	
 
-	for(int i = 0; i < 8; ++i){
-		tmpC = tmpC + ((PINA & (0x01 << i)) > 0);
-		tmpC = tmpC + ((PINB & (0x01 << i)) > 0);
-
+	for(i = 0; i < 8; ++i){
+		tmpB = (PINB & (0x01 << i)) > 0;
+		tmpC = tmpC + tmpB;
+		tmpA = (PINA & (0x01 << i)) > 0;
+		tmpC = tmpC + tmpA;
 	}
 
 	PORTC = tmpC;
