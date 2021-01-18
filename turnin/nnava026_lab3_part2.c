@@ -18,29 +18,33 @@ int main(void) {
     DDRC = 0xFF; PORTC = 0x00;
 
     unsigned char tmpC = 0x00;
+    unsigned char tmpA = 0x00;
 
-    while (1) {	 
+    while (1) {
 
-	if(PINA > 0x00){
+	tmpA = PINA & 0x0f;	    
+
+
+	if(tmpA > 0x00){
 		tmpC = 0x01;
 		tmpC = tmpC << 5;
 	}
-	if(PINA > 0x02){
+	if(tmpA > 0x02){
 		tmpC = tmpC + 0x10;
 	}
-	if(PINA > 0x04){
+	if(tmpA > 0x04){
 		tmpC = tmpC + 0x08;
 	}
-	if(PINA > 0x06){
+	if(tmpA > 0x06){
 		tmpC = tmpC + 0x04;
 	}
-	if(PINA > 0x09){
+	if(tmpA > 0x09){
 		tmpC = tmpC + 0x02;
 	}
-	if(PINA > 0x0C){
+	if(tmpA > 0x0C){
 		tmpC = tmpC + 0x01;
 	}
-	if(PINA <= 0x04){
+	if(tmpA <= 0x04){
 		tmpC = tmpC | (0x01 << 6);
 	}
 
