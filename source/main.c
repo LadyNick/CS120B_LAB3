@@ -20,11 +20,7 @@ int main(void) {
 
     unsigned char tmpC = 0x00;
 
-    while (1) {
-
-	tmpA = PINA;
-	tmpB = PINB;
-	 
+    while (1) {	 
 
 	for(int i = 0; i < 8; ++i){
 		tmpC = tmpC + ((PINA & (0x01 << i)) > 0);
