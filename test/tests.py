@@ -16,20 +16,20 @@
 # altered in between executions (unless preconditions are used).
 
 tests = [
-    {'description': 'PINA = 0Xff --> PORTB = 0x0f PORTC = 0xf0',
-     'steps': [{'inputs': [('PINA', 0xff)], 'iterations':5 } ],
-	'expected': [('PORTB', 0x0f), ('PORTC', 0xf0)],
+    {'description': 'weight 30 --> PORTB = 0x04 ',
+     'steps': [{'inputs': [('PIND', 0x0F), ('PORTB', 0x00)], 'iterations':5 } ],
+	'expected': [('PORTB', 0x04)],
     },
-    {'description': 'PINA = 0xab --> PORTB = 0x0a PORTC = 0xb0',
-     'steps': [{'inputs': [('PINA', 0xab)], 'iterations':5 } ],
-	'expected': [('PORTB', 0x0a), ('PORTC', 0xb0)],
+    {'description': 'weight 4 --> PORTB = 0x00 ',
+     'steps': [{'inputs': [('PIND', 0x02), ('PORTB', 0x00)], 'iterations':5 } ],
+	'expected': [('PORTB', 0x00)],
     },
-    {'description': 'PINA = 0x03 --> PORTB = 0x00 PORTC = 0x30',
-     'steps': [{'inputs': [('PINA', 0x03)], 'iterations':5 }  ],
-	'expected': [('PORTB', 0x00), ('PORTC', 0x30)],
+    {'description': 'weight 70 --> PORTB = 0x02',
+     'steps': [{'inputs': [('PIND', 0x23), ('PORTB', 0x00)], 'iterations':5 }  ],
+	'expected': [('PORTB', 0x02)],
     },
 
     ]
 
-watch = ['PORTC', 'PORTB']
+watch = ['PORTB', 'PIND']
 

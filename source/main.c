@@ -14,16 +14,34 @@
 
 
 int main(void) {
-    DDRA = 0x00; PINA = 0xFF;
-    DDRB = 0xFF; PORTB = 0x00;
-    DDRC = 0xFF; PORTC = 0x00;
 
-  
+    DDRB = 0xFE; PORTB = 0x00;
+    DDRD = 0x00; PIND = 0xFF;
+
+    unsigned char weight = 0x00;
+ 
     while (1) {
+	    
+	    weight = (PIND << 1) + (PORTB & 0x01);
+	    
+	    if(weight <= 0x05){
+		//do nothing, dont set PB1 OR PB0
+	    }
+	    else{
+	    if(weight >= 0x46){
+		PORTB = PORTB | 0x02;
+	    }
+	    else{
+		PORTB = PORTB & ~(0x02);
+	    }
+	    if((weight > 0x05) && (weight < 0x46)){
+		PORTB = PORTB | 0x04;
+	    }
+	    else{
+		PORTB = PORTB & ~(0x04);
+	    }
+	    }
 
-
-	PORTB = (PINA & 0xF0) >> 4;  
-	PORTC = (PINA & 0x0F) << 4;
 
     }
     return 1;
